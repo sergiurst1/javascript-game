@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pe Interval la SEGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            box-sizing: border-box;
+            font-family: "Press Start 2P", system-ui;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div style="position: relative; display: inline-block;">
+        <div style="
+            position: absolute; 
+            display: flex; 
+            width: 100%; 
+            align-items: 
+            center; 
+            padding: 20px;
+            ">
+
+            <div style="
+                position: relative; 
+                width: 100%; 
+                display: flex; 
+                justify-content: flex-end;
+                border-top: 4px solid white; 
+                border-left: 4px solid white; 
+                border-bottom: 4px solid white;
+                ">            
+                
+                <div style="
+                    background-color: red; 
+                    height: 50px; 
+                    width: 100%;
+                    "></div>
+                
+                <div id="player1Health" style="
+                    position: absolute; 
+                    background-color: #22f53e; 
+                    top: 0; 
+                    bottom: 0; 
+                    right: 0; 
+                    width: 100%; 
+                    "></div>
+            </div>
+
+            <div id="timer" style="
+                background-color: black; 
+                width: 100px; height: 70px; 
+                flex-shrink: 0; display: flex; 
+                align-items: center; justify-content: 
+                center; color: white;  
+                border: 4px solid white;
+                "></div>
+
+            <div style="
+                position: relative; 
+                width: 100%;
+                border-top: 4px solid white; 
+                border-right: 4px solid white; 
+                border-bottom: 4px solid white;
+                ">            
+                
+                <div style="
+                    background-color: red; 
+                    height: 50px;
+                    "></div>
+                
+                <div id="player2Health" style="
+                    position: absolute; 
+                    display: flex; 
+                    background-color: #22f53e; 
+                    top: 0; 
+                    bottom: 0; 
+                    right: 0; 
+                    left: 0; 
+                    "></div>
+            
+        </div>
+        </div>
+        <div id="display_text" style="position: absolute; color: white; align-items: center; justify-content: center; top: 0; bottom: 0; right: 0; left: 0; display: none;">
+        </div>
+        <canvas></canvas>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./utility/utils.js"></script>
+    <script src="./domain/sprirtes.js"></script>
+    <script src="./domain/fighter.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

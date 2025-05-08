@@ -22,16 +22,30 @@ function rectCollision({rectangle1, rectangle2}){
     )
 }
 
-function determineWinner({player1, player2, timerID}){
+let winnerDeclared = false;
+
+function determineWinner({ player1, player2, timerID }) {
+    if (winnerDeclared) return;
+    winnerDeclared = true;
+
     clearTimeout(timerID);
-    document.querySelector("#display_text").style.display = 'flex';
-    if(player1.health === player2.health) {
-        document.querySelector("#display_text").innerHTML = 'Tie';
-    } else if(player1.health > player2.health) {
-        document.querySelector("#display_text").innerHTML = 'Player 1 won';
-    } else if(player1.health < player2.health) {
-        document.querySelector("#display_text").innerHTML = 'Player 2 won';
-    }
+
+    setTimeout(() => {
+        document.querySelector('#restartScreen').style.display = 'flex';
+
+        if (player1.health <= 0 && player2.health > 0) {
+            document.querySelector('#winnerText').innerText = 'Player 2 Wins!';
+            player2Wins++;
+        } else if (player2.health <= 0 && player1.health > 0) {
+            document.querySelector('#winnerText').innerText = 'Player 1 Wins!';
+            player1Wins++;
+        } else {
+            document.querySelector('#winnerText').innerText = 'Tie!';
+        }
+
+        document.querySelector('#player1Wins').innerText = `Player 1 Wins: ${player1Wins}`;
+        document.querySelector('#player2Wins').innerText = `Player 2 Wins: ${player2Wins}`;
+    }, 500);
 }
 
 let timer = 60

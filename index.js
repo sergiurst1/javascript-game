@@ -8,6 +8,9 @@ context.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.7;
 
+let player1Wins = 0;
+let player2Wins = 0;
+
 const background = new SpriteBackground({
     position: {
         x: 0,
@@ -201,11 +204,52 @@ function animate(){
         player2.isAttaking = false;
     }
 
-    if(player2.health <= 0 || player1.health <= 0) {
-        determineWinner({player1, player2, timerID});
+    if ((player1.health <= 0 || player2.health <= 0) && !winnerDeclared) {
+        determineWinner({ player1, player2, timerID });
     }
 
 }
+
+function restartGame() {
+    document.querySelector('#restartScreen').style.display = 'none';
+    winnerDeclared = false;
+
+    // Reset players' properties after restart
+    player1.health = 100;
+    player2.health = 100;
+
+    player1.dead = false;  // Reset dead state
+    player2.dead = false;  // Reset dead state
+
+    // Reset positions and velocities
+    player1.position = { x: 0, y: 0 };
+    player2.position = { x: 974, y: 0 };
+
+    player1.velocity = { x: 0, y: 0 };
+    player2.velocity = { x: 0, y: 0 };
+
+    // Reset animation frames and images
+    player1.image = player1.sprites.idle.image;
+    player1.framesMax = player1.sprites.idle.framesMax;
+    player1.framesCurrent = 0; // Ensure frames reset
+    player2.image = player2.sprites.idle.image;
+    player2.framesMax = player2.sprites.idle.framesMax;
+    player2.framesCurrent = 0; // Ensure frames reset
+
+    // Switch to idle sprite after reset
+    player1.switchSprite('idle');
+    player2.switchSprite('idle');
+
+    // Reset health bars to 100%
+    gsap.to('#player1Health', { width: '100%' });
+    gsap.to('#player2Health', { width: '100%' });
+
+    timer = 60;
+
+    // Restart the timer if applicable
+    decreaseTimer();
+}
+
 
 animate();
 
